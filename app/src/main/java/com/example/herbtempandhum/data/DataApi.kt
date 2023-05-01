@@ -7,5 +7,5 @@ import retrofit2.http.Path
 interface DataApi {
 
     @GET("/data/{id}")
-    fun getData(@Path("id") id:Int): Call<List<Data>>
+    fun getData(@Path("id") id:String): Call<List<Data>>
 }

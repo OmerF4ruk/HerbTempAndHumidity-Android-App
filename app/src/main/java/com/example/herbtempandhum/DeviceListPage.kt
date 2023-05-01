@@ -43,7 +43,7 @@ fun DeviceListPage(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Hoş Geldin", fontSize = 25.sp)
+            Text(text = "Hoş Geldin", fontSize = 25.sp, )
             Text(text = "Ömer", fontSize = 25.sp)
         }
 
@@ -77,7 +77,7 @@ private fun DeviceBox(
 ) {
     Box(
         modifier = Modifier
-            .clickable(onClick = { navController.navigate(route = Screen.DevicePage.route + "/${device}") })
+            .clickable(onClick = { navController.navigate(route = Screen.DevicePage.route + "/${device.id}") })
             .size(450.dp, 130.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(Color(0xFF7D5260)),
@@ -102,9 +102,9 @@ private fun DeviceBox(
 
 
                 ) {
-                Text(text = "Bitki İsmi:", fontSize = 30.sp)
+                Text(text = "Bitki İsmi:", fontSize = 30.sp,color = Color.White)
 
-                Text(text = device.name, fontSize = 30.sp)
+                Text(text = device.name, fontSize = 30.sp,color = Color.White)
             }
             Row(
                 modifier = Modifier
@@ -114,9 +114,9 @@ private fun DeviceBox(
                     space = 10.dp,
                 ),
             ) {
-                Text(text = "Cihaz İD:", fontSize = 20.sp)
+                Text(text = "Cihaz İD:", fontSize = 20.sp,color = Color.White)
 
-                Text(text = device.id, fontSize = 20.sp)
+                Text(text = device.id, fontSize = 20.sp,color = Color.White)
             }
 
         }

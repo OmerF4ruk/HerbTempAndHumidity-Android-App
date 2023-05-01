@@ -10,6 +10,6 @@ data class Data(
     val air_temperature: String,
     val soil_humidity: String,
     val soil_temperature: String,
-    val date:Date,
+    val date:String,
     val time:String
 )

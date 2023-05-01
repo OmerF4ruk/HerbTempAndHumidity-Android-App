@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DataViewModel : ViewModel() {
+class DataViewModel(device_id: String ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state
@@ -21,11 +21,15 @@ class DataViewModel : ViewModel() {
         val error: String = ""
     )
 
+
+
+
     init {
-        getCoins(132123)
+        println("id: "+device_id)
+        getCoins(device_id)
     }
 
-    private fun getCoins(device_id:Int) {
+    private fun getCoins(device_id:String) {
         val query = Retrofit.dataApi.getData(device_id)
         query.enqueue(object : Callback<List<Data>> {
             override fun onResponse(
@@ -34,7 +38,6 @@ class DataViewModel : ViewModel() {
             ) {println("aaaaaa"+response)
 
                 val elements = response.body()
-                println("aaaa"+elements)
 
                 _state.update { it.copy(datas = elements ?: emptyList()) }
 
