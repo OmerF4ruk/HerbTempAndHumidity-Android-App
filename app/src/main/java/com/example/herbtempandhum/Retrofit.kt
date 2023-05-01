@@ -1,5 +1,7 @@
-package com.example.herbtempandhum.data
+package com.example.herbtempandhum
 
+import com.example.herbtempandhum.api.DataApi
+import com.example.herbtempandhum.api.DeviceDataApi
 import retrofit2.converter.gson.GsonConverterFactory
 
 

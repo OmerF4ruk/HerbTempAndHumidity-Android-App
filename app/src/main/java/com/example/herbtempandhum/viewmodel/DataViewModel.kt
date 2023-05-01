@@ -1,8 +1,8 @@
-package com.example.herbtempandhum
+package com.example.herbtempandhum.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.herbtempandhum.data.Data
-import com.example.herbtempandhum.data.Retrofit
+import com.example.herbtempandhum.Retrofit
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

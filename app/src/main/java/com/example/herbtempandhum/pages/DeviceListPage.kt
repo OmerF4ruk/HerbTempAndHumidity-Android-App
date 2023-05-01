@@ -12,21 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.herbtempandhum.data.Device
-import com.example.herbtempandhum.data.Retrofit
-import com.example.herbtempandhum.data.User
-import okhttp3.Request
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import javax.crypto.spec.DESKeySpec
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.herbtempandhum.viewmodel.DeviceListViewModel
 
 @Composable
 fun DeviceListPage(

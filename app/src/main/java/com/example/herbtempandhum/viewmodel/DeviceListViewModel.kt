@@ -1,11 +1,8 @@
-package com.example.herbtempandhum
+package com.example.herbtempandhum.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.herbtempandhum.data.Device
-import com.example.herbtempandhum.data.GetDeviceListUseCase
-import com.example.herbtempandhum.data.Resource
-import com.example.herbtempandhum.data.Retrofit
+import com.example.herbtempandhum.Retrofit
 import kotlinx.coroutines.flow.*
 import retrofit2.Call
 import retrofit2.Callback

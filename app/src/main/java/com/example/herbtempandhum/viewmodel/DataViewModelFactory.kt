@@ -1,4 +1,4 @@
-package com.example.herbtempandhum
+package com.example.herbtempandhum.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

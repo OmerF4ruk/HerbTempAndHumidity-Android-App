@@ -1,5 +1,6 @@
-package com.example.herbtempandhum.data
+package com.example.herbtempandhum.api
 
+import com.example.herbtempandhum.data.Data
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
