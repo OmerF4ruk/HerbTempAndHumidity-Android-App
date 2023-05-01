@@ -1,10 +1,12 @@
 package com.example.herbtempandhum.data
 
-import retrofit2.http.GET
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.http.*
 
 interface DeviceDataApi {
 
-    @GET("/devices/getByUserId")
-    suspend fun getDevices(): List<Device>
+    @GET("/device/getByUserId/{id}")
+    fun getDevices(@Path("id") id:Int): Call<List<Device>>
 
 }

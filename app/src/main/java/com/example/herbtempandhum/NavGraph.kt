@@ -25,10 +25,11 @@ fun SetupNavGraph(navController: NavHostController) {
             DeviceListPage(navController)
         }
         composable(
-            route=Screen.DevicePage.route + "/{id}"
+            route=Screen.DevicePage.route + "/{Device_id}"
         ) { navBackStack ->
-            val id = navBackStack.arguments?.getString("id")
+            val id = navBackStack.arguments?.getString("Device_id")
             DevicePage(id)
         }
+
     }
 }

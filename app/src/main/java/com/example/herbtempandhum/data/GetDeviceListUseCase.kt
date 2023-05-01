@@ -10,8 +10,8 @@ class GetDeviceListUseCase {
     operator fun invoke(): Flow<Resource<List<Device>>> = flow {
         try {
             emit(Resource.Loading())
-            val coin = Retrofit.api.getDevices()
-            emit(Resource.Success(coin))
+            //val coin = Retrofit.api.getDevices()
+            //emit(Resource.Success(coin))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexcepted error occured."))
         } catch (e: IOException) {
