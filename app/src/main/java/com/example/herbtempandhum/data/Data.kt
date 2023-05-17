@@ -1,6 +1,7 @@
 package com.example.herbtempandhum.data
 
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.Date
 import java.util.TimeZone
 
@@ -10,6 +11,5 @@ data class Data(
     val air_temperature: String,
     val soil_humidity: String,
     val soil_temperature: String,
-    val date:String,
-    val time:String
+    val com_time:String
 )

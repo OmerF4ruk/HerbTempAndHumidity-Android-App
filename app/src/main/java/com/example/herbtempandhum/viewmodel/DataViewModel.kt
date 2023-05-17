@@ -36,7 +36,7 @@ class DataViewModel(device_id: String ) : ViewModel() {
                 call: Call<List<Data>>,
                 response: Response<List<Data>>
             ) {println("aaaaaa"+response)
-
+                println("response: "+response)
                 val elements = response.body()
 
                 _state.update { it.copy(datas = elements ?: emptyList()) }

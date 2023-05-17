@@ -9,6 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DeviceListViewModel(
+    user_id: String
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
@@ -21,10 +22,10 @@ class DeviceListViewModel(
     )
 
     init {
-        getCoins(user_id = 1)
+        getCoins(user_id)
     }
 
-    private fun getCoins(user_id:Int) {
+    private fun getCoins(user_id: String) {
         val query = Retrofit.deviceApi.getDevices(1)
         query.enqueue(object : Callback<List<Device>> {
             override fun onResponse(

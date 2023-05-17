@@ -1,5 +1,6 @@
 package com.example.herbtempandhum
 
+import android.R.string
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -23,6 +24,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.herbtempandhum.data.Data
 import com.example.herbtempandhum.viewmodel.DataViewModel
 import com.example.herbtempandhum.viewmodel.DataViewModelFactory
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Objects.toString
 
 
@@ -112,7 +115,7 @@ fun dataBox(data: Data) {
                 dataElememnt(name = "Toprak Nemi", value = data.soil_humidity)
 
             }
-            Divider(Modifier.padding(5.dp),thickness = 2.dp)
+            Divider(Modifier.padding(5.dp), thickness = 2.dp)
             Column(
                 Modifier.padding(vertical = 0.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -120,7 +123,7 @@ fun dataBox(data: Data) {
             ) {
                 Text(text = "Son İletişim Zamanı", color = Color.White, fontSize = 12.sp)
                 Text(
-                    text = toString(timeFormatter(data.date, data.time)),
+                    text = toString(timeFormatter(data.com_time)),
                     color = Color.White, fontSize = 12.sp
                 )
             }
@@ -140,12 +143,19 @@ fun dataBox(data: Data) {
 
 }
 
-fun timeFormatter(date: String, time: String): String {
+@RequiresApi(Build.VERSION_CODES.O)
+fun timeFormatter(date: String): String {
 
-    val dates = date.split("T")
-    val times = time.split(".")
-    val datetime: String = dates[0] + " " + times[0]
-    return datetime;
+    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val date: LocalDateTime = LocalDateTime.parse(date, formatter)
+
+    val year = date.year
+    val month = date.monthValue
+    val day = date.dayOfMonth
+    val hour = date.hour%24
+    println("aaa: "+(date.hour+3)%24)
+    val min = date.minute
+    return "${day}-${month}-${year} ${hour}:${min}"
 }
 
 @Composable
