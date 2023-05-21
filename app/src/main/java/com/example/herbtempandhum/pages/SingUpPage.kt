@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.herbtempandhum.data.LoginRequest
+import com.example.herbtempandhum.data.RegisterRequest
 import com.example.herbtempandhum.data.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +29,7 @@ import retrofit2.Response
 import java.io.IOException
 
 @Composable
-fun LoginPage(navController: NavController) {
+fun SingUpPage(navController: NavController) {
     val context = LocalContext.current
     Column(
         Modifier
@@ -37,6 +38,11 @@ fun LoginPage(navController: NavController) {
         verticalArrangement = Arrangement.spacedBy(16.dp, alignment = Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        var name: String by remember { mutableStateOf("") }
+        TextField(
+            value = name,
+            label = { Text(text = "İsim") },
+            onValueChange = { name = it })
         var userEmail: String by remember { mutableStateOf("") }
         TextField(
             value = userEmail,
@@ -51,9 +57,10 @@ fun LoginPage(navController: NavController) {
 
         Button(
             onClick = {
-                login(
+                signUp(
                     email = userEmail,
                     password = userPassword,
+                    name = name,
                     navController = navController,
                     context
                 )
@@ -64,22 +71,8 @@ fun LoginPage(navController: NavController) {
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(100))
         ) {
-            Text(text = "Giriş Yap", Modifier.padding(vertical = 5.dp),style = TextStyle(
-                fontSize = 19.sp))
-
-        }
-        Button(
-            onClick = {
-                navController.navigate(route = Screen.SignUp.route )
-
-
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(100)).padding(horizontal = 50.dp)
-        ) {
-            Text(text = "Hesabınız Yok İse Tıklayınız!", Modifier.padding(vertical = 5.dp),style = TextStyle(
-                fontSize = 11.sp)
+            Text(text = "Kayıt Ol", Modifier.padding(vertical = 5.dp),style = TextStyle(
+                fontSize = 19.sp)
             )
 
         }
@@ -90,37 +83,44 @@ fun LoginPage(navController: NavController) {
 
 }
 
-fun login(email: String, password: String, navController: NavController, context: Context) {
+fun signUp(
+    email: String,
+    password: String,
+    name: String,
+    navController: NavController,
+    context: Context
+) {
 
-    if(email.isEmpty()||password.isEmpty()){
+    if (email.isEmpty() || password.isEmpty()) {
         Toast.makeText(/* context = */ context,/* text = */
             "Lütfen Boşlukları Doldurunuz",/* duration = */
-            Toast.LENGTH_SHORT).show()
-    }
-    else{
-        val loginRequest = LoginRequest();
+            Toast.LENGTH_SHORT
+        ).show()
+    } else {
+        val e=email.replace(" ", "")
+        val p=email.replace(" ", "")
+        val n=email.replace(" ", "")
+        val registerRequest = RegisterRequest(e,p,n)
 
-        println("e: " + email)
-        println("p: " + password)
-        loginRequest.email = email.replace(" ", "");
-        loginRequest.password = password.replace(" ", "")
-        val query: Call<User> = Retrofit.userApi.login(loginRequest)
-        println("p: 1")
+        val query: Call<User> = Retrofit.userApi.signUp(registerRequest)
         var code = 1
         query.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 println("kod: " + response.code())
                 if (response.code() == 201) {
+                    println("user: "+response)
                     val user: User? = response.body()
                     println((user?.id.toString()))
-                    navController.navigate(route = Screen.DeviceList.route + "/${user?.id.toString()}")
+                    navController.navigate(route = Screen.Login.route)
                     Toast.makeText(/* context = */ context,/* text = */
-                        "Giriş Başarılı",/* duration = */
-                        Toast.LENGTH_SHORT).show()
+                        "Kayıt Başarrılı",/* duration = */
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     Toast.makeText(/* context = */ context,/* text = */
-                        "Hatalı Giriş Bilgileri",/* duration = */
-                        Toast.LENGTH_SHORT).show()
+                        "Bu E-mail Daha Kullanılıyor Olabilir!",/* duration = */
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
 
@@ -150,7 +150,7 @@ private fun TextInput(
 
 @Composable
 @Preview(showBackground = true)
-fun LoginPagePreview() {
+fun SingUpPage() {
     LoginPage(navController = rememberNavController())
 
 }

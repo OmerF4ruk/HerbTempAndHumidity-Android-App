@@ -13,6 +13,6 @@ interface DeviceDataApi {
     fun addDevice(@Body device: NewDevice): Call<Device>
 
     @GET("/device/getByUserId/{id}")
-    fun getDevices(@Path("id") id:Int): Call<List<Device>>
+    fun getDevices(@Path("id") id:String): Call<List<Device>>
 
 }

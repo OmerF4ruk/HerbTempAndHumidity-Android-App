@@ -22,6 +22,11 @@ fun SetupNavGraph(navController: NavHostController) {
             LoginPage(navController)
         }
         composable(
+            route = Screen.SignUp.route
+        ) {
+            SingUpPage(navController)
+        }
+        composable(
             route = Screen.DeviceList.route+ "/{user_id}"
         ) {navBackStack ->
             val id = navBackStack.arguments?.getString("user_id")

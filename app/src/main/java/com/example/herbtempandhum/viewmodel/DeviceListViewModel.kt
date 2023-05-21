@@ -26,7 +26,7 @@ class DeviceListViewModel(
     }
 
     private fun getCoins(user_id: String) {
-        val query = Retrofit.deviceApi.getDevices(1)
+        val query = Retrofit.deviceApi.getDevices(user_id)
         query.enqueue(object : Callback<List<Device>> {
             override fun onResponse(
                 call: Call<List<Device>>,
@@ -36,6 +36,7 @@ class DeviceListViewModel(
 
                 _state.update { it.copy(devices = elements ?: emptyList()) }
 
+
             }
 
             override fun onFailure(call: retrofit2.Call<List<Device>>, t: Throwable) {
@@ -44,4 +45,5 @@ class DeviceListViewModel(
         })
 
     }
+
 }

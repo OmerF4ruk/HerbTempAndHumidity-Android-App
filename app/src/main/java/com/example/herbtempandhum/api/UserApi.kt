@@ -2,6 +2,7 @@ package com.example.herbtempandhum.api
 
 import com.example.herbtempandhum.data.Data
 import com.example.herbtempandhum.data.LoginRequest
+import com.example.herbtempandhum.data.RegisterRequest
 import com.example.herbtempandhum.data.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -13,4 +14,6 @@ interface UserApi {
 
     @POST("/user/login")
     fun login(@Body loginRequest: LoginRequest): Call<User>
+    @POST("/user/register")
+    fun signUp(@Body registerRequest: RegisterRequest): Call<User>
 }
